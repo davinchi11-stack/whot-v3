@@ -1,0 +1,202 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------- Naija Whot theme (shadcn tokens) ---------- */
+:root {
+  --maroon: #800020;
+  --maroon-deep: #6b1028;
+  --maroon-light: #a52a45;
+  --cream: #fff4df;
+  --felt: #123b2a;
+  --felt-deep: #0a2119;
+  --gold: #f5d27a;
+
+  --radius: 0.85rem;
+  --background: #0a2119;
+  --foreground: #f6efe2;
+  --card: #141a17;
+  --card-foreground: #f6efe2;
+  --popover: #141a17;
+  --popover-foreground: #f6efe2;
+  --primary: #800020;
+  --primary-foreground: #fff4df;
+  --secondary: #1e2a24;
+  --secondary-foreground: #f6efe2;
+  --muted: #1a231e;
+  --muted-foreground: #b9c5bb;
+  --accent: #2a3a31;
+  --accent-foreground: #f6efe2;
+  --destructive: #c0392b;
+  --border: rgb(255 255 255 / 0.1);
+  --input: rgb(255 255 255 / 0.18);
+  --ring: #f5d27a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-maroon: var(--maroon);
+  --color-maroon-deep: var(--maroon-deep);
+  --color-maroon-light: var(--maroon-light);
+  --color-cream: var(--cream);
+  --color-felt: var(--felt);
+  --color-gold: var(--gold);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: 'Montserrat', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --animate-reaction: reaction-float 2.6s ease-out forwards;
+  --animate-play: play-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-draw-in: draw-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-bump: bump 0.35s ease-out;
+  --animate-turn: turn-pop 0.4s ease-out;
+  --animate-flash: flash-in 1.9s ease-out forwards;
+  --animate-shake: shake 0.5s ease-in-out;
+  --animate-pulse-ring: pulse-ring 1.8s ease-in-out infinite;
+  --animate-deal: deal-in 0.35s ease-out both;
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html, body { min-height: 100%; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image: radial-gradient(1100px 560px at 50% -8%, #14452f 0%, var(--felt-deep) 62%);
+    background-attachment: fixed;
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+  }
+  button { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+}
+
+@keyframes reaction-float {
+  0% { opacity: 0; transform: translate(-50%, 8px) scale(0.5); }
+  12% { opacity: 1; transform: translate(-50%, -6px) scale(1.25); }
+  25% { transform: translate(-50%, -14px) scale(1); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -64px) scale(1); }
+}
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(245 210 122 / 0.55); }
+  50% { box-shadow: 0 0 0 8px rgb(245 210 122 / 0); }
+}
+@keyframes play-in {
+  0% { opacity: 0; transform: translateY(70px) rotate(-14deg) scale(0.8); }
+  60% { opacity: 1; transform: translateY(-4px) rotate(2deg) scale(1.04); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes draw-in {
+  0% { opacity: 0; transform: translateY(-80px) scale(0.7); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes bump { 0% { transform: scale(1); } 40% { transform: scale(0.94) translateY(3px); } 100% { transform: scale(1); } }
+@keyframes turn-pop { 0% { transform: scale(0.85); opacity: 0.4; } 60% { transform: scale(1.06); } 100% { transform: none; opacity: 1; } }
+@keyframes flash-in {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  14% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+  24% { transform: translate(-50%, -50%) scale(1); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -58%) scale(1); }
+}
+@keyframes shake { 0%, 100% { transform: none; } 20%, 60% { transform: translateX(-4px); } 40%, 80% { transform: translateX(4px); } }
+@keyframes deal-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.92); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Whot card art ----------
+   Based on real Whot decks: bold number top-left mirrored bottom-right, one large symbol in the middle,
+   a printed double border, doubled "value" number inside Star symbols, a crown on the Whot-20 card,
+   and a single-colour art-deco back carrying the WHOT wordmark. Symbols stay maroon on warm cream. */
+.w-card {
+  --w: 84px;
+  position: relative; flex: none; display: block; padding: 0; text-align: left;
+  width: var(--w); aspect-ratio: 5 / 7.3; border-radius: calc(var(--w) * 0.12);
+  background: linear-gradient(165deg, #fffaf0 0%, var(--cream) 60%, #f5e6c8 100%);
+  color: var(--maroon); border: 1px solid rgb(107 16 40 / 0.55);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.6) inset, 0 3px 8px rgb(0 0 0 / 0.38);
+  font-weight: 800; user-select: none; font-family: var(--font-sans);
+}
+.w-card::before {
+  content: ''; position: absolute; inset: calc(var(--w) * 0.045); border-radius: calc(var(--w) * 0.085);
+  border: 1px solid rgb(128 0 32 / 0.35); pointer-events: none;
+}
+.w-card--xs { --w: 30px; }
+.w-card--sm { --w: 52px; }
+.w-card--md { --w: var(--hand-w, 84px); }
+.w-card--lg { --w: var(--top-w, 108px); }
+.w-card__corner { position: absolute; display: flex; flex-direction: column; align-items: center; line-height: 1; gap: calc(var(--w) * 0.02); font-size: calc(var(--w) * 0.24); }
+.w-card__corner b { font-weight: 900; letter-spacing: -0.03em; }
+.w-card__corner svg { width: calc(var(--w) * 0.17); height: calc(var(--w) * 0.17); }
+.w-card__corner--tl { top: 7%; left: 9%; }
+.w-card__corner--br { bottom: 7%; right: 9%; transform: rotate(180deg); }
+.w-card__center { position: absolute; inset: 0; display: grid; place-items: center; }
+.w-card__symbol { width: 54%; height: auto; filter: drop-shadow(0 1px 0 rgb(255 255 255 / 0.5)); }
+.w-card__crown { width: 46%; height: auto; }
+.w-card__whot { display: grid; place-items: center; gap: calc(var(--w) * 0.02); text-align: center; line-height: 1; }
+.w-card__whot b { font-size: calc(var(--w) * 0.36); font-weight: 900; }
+.w-card__whot i { font-size: calc(var(--w) * 0.15); letter-spacing: 0.18em; font-style: normal; font-weight: 900; }
+.w-card--xs::before, .w-card--xs .w-card__corner, .w-card--xs 
+.w-card.is-interactive { cursor: pointer; transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease; }
+.w-card.is-playable { box-shadow: 0 0 0 3px var(--gold), 0 10px 18px rgb(0 0 0 / 0.5); transform: translateY(-14px); }
+.w-card.is-interactive.is-playable:hover { transform: translateY(-22px) scale(1.04); z-index: 5; }
+.w-card.is-disabled { filter: saturate(0.45) brightness(0.74); }
+
+.w-card--back {
+  background:
+    radial-gradient(circle at 50% 50%, var(--maroon-light) 0 11%, transparent 11.5%),
+    repeating-conic-gradient(from 0deg at 50% 50%, var(--maroon) 0 7.5deg, var(--maroon-deep) 7.5deg 15deg);
+  border-color: var(--cream);
+}
+.w-card--back::before { border: calc(var(--w) * 0.03) solid var(--cream); inset: calc(var(--w) * 0.05); }
+.w-card__cartouche {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-8deg);
+  width: 80%; padding: calc(var(--w) * 0.05) 0; text-align: center; border-radius: 999px;
+  background: var(--cream); color: var(--maroon); border: calc(var(--w) * 0.025) double var(--maroon-deep);
+  font-weight: 900; letter-spacing: 0.08em; font-size: calc(var(--w) * 0.2); line-height: 1;
+}
+.w-card--xs .w-card__cartouche { font-size: 0; padding: calc(var(--w) * 0.12) 0; }
+.w-card--edge { background: linear-gradient(165deg, #f3e3c2, #e8d3a8); box-shadow: 0 1px 3px rgb(0 0 0 / 0.4); }
+.w-card--edge::before { display: none; }
+.w-card--empty { background: transparent; border: 2px dashed rgb(255 255 255 / 0.25); box-shadow: none; }
+.w-card--empty::before { display: none; }
+
+/* Hand: overlapping, horizontally scrollable, corners stay readable */
+.hand-row > .w-card + .w-card { margin-left: calc(var(--w, 84px) * -0.36); }
+.hand-row .w-card { scroll-snap-align: center; }
+
+.table-felt {
+  background:
+    radial-gradient(ellipse at 50% 38%, rgb(255 255 255 / 0.07), transparent 60%),
+    radial-gradient(900px 520px at 50% 40%, #1b5a3d 0%, var(--felt) 70%);
+  box-shadow: inset 0 0 60px rgb(0 0 0 / 0.5), 0 20px 40px rgb(0 0 0 / 0.35);
+}
+.fan-card { transform: translateY(calc(var(--i) * var(--i) * 5px)) rotate(calc(var(--i) * 8deg)); transform-origin: 50% 130%; margin: 0 -16px; }
+
+@media (max-width: 640px) {
+  .table-felt { --hand-w: 62px; --top-w: 88px; }
+  .hand-row > .w-card + .w-card { margin-left: calc(var(--w, 62px) * -0.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
